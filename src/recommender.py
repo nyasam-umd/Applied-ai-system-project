@@ -1,11 +1,11 @@
+import csv
 from typing import List, Dict, Tuple, Optional
 from dataclasses import dataclass
 
 @dataclass
 class Song:
     """
-    Represents a song and its attributes.
-    Required by tests/test_recommender.py
+    Stores song information
     """
     id: int
     title: str
@@ -21,8 +21,7 @@ class Song:
 @dataclass
 class UserProfile:
     """
-    Represents a user's taste preferences.
-    Required by tests/test_recommender.py
+    Stores user music perferences.
     """
     favorite_genre: str
     favorite_mood: str
@@ -31,43 +30,77 @@ class UserProfile:
 
 class Recommender:
     """
-    OOP implementation of the recommendation logic.
-    Required by tests/test_recommender.py
+    Recommends songs based on user preferences.
     """
     def __init__(self, songs: List[Song]):
         self.songs = songs
 
     def recommend(self, user: UserProfile, k: int = 5) -> List[Song]:
-        # TODO: Implement recommendation logic
-        return self.songs[:k]
+        ranked = sorted(
+            self.songs,
+            key=lambda song: score_song(user.__dict__, song.__dict__)[0],
+            reverse=True     
+        )
+        return ranked[:k]
 
     def explain_recommendation(self, user: UserProfile, song: Song) -> str:
-        # TODO: Implement explanation logic
-        return "Explanation placeholder"
+        score, reasons = score_song(user.__dict__, song.__dict__)
+        return "; ".join(reasons) if reasons else "Matches your overall preferences."
 
 def load_songs(csv_path: str) -> List[Dict]:
     """
-    Loads songs from a CSV file.
-    Required by src/main.py
+    Loads songs from a CSV file using Python's csv module.
+    Returns a list of dictionaries, one per song.
     """
-    # TODO: Implement CSV loading logic
-    print(f"Loading songs from {csv_path}...")
-    return []
+    songs: List[Dict] = []
+
+    with open(csv_path, newline="", encoding="utf-8") as csv_file:
+        reader = csv.DictReader(csv_file)
+        for row in reader:
+            songs.append({key: value for key, value in row.items()})
+
+    return songs
+
 
 def score_song(user_prefs: Dict, song: Dict) -> Tuple[float, List[str]]:
     """
-    Scores a single song against user preferences.
+    Scores a song based on user experiences.
     Required by recommend_songs() and src/main.py
     """
-    # TODO: Implement scoring logic using your Algorithm Recipe from Phase 2.
-    # Expected return format: (score, reasons)
-    return []
+    score = 0.0
+    reasons = []
+    
+    if user_prefs["favorite_genre"].lower() == song["genre"].lower():
+        score += 2
+        reasons.append("Matches your favorite genre")
+        
+    if user_prefs["favorite_mood"].lower() == song["mood"].lower():
+            score += 1
+            reasons.append("Matches your preferred mood")
+    energy_difference = abs(
+        float(user_prefs["target_energy"]) - float(song["energy"])
+    )
+    score += max(0, 1.5 - energy_difference * 1.5)
+    
+    if user_prefs.get("likes_acoustic", False):
+        if float(song["acousticness"]) >= 0.5:
+            score += 0.5
+            reasons.append("Has an acoustic sound")
+    return score, reasons
+
 
 def recommend_songs(user_prefs: Dict, songs: List[Dict], k: int = 5) -> List[Tuple[Dict, float, str]]:
     """
-    Functional implementation of the recommendation logic.
+    Returns the highest-ranked songs.
     Required by src/main.py
     """
-    # TODO: Implement scoring and ranking logic
-    # Expected return format: (song_dict, score, explanation)
-    return []
+    
+    results = []
+    
+    for song in songs:
+        score, reasons = score_song(user_prefs, song)
+        explanation = "; ".join(reasons) if reasons else "Matches your overall preferences"
+        results.append((song, score, explanation))
+        
+    results.sort(key=lambda item: item[1], reverse=True)
+    return results[:k]

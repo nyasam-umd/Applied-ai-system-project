@@ -10,21 +10,19 @@
 
 **What task did you give the agent?**
 
-<!-- Describe the goal you asked the agent to accomplish -->
+I asked the VS Code AI assistant to improve code for my SoulVibes music recommendation system.
 
 **Prompts used:**
 
-<!-- Paste the key prompts you gave the agent -->
+Explain and fix errors in my code.
 
 **What did the agent generate or change?**
 
-<!-- List the files edited, code generated, or commands run -->
+It helped improve the recommendation logic and scoring system.
 
 **What did you verify or fix manually?**
 
-<!-- Describe anything the agent got wrong or that required human review -->
-
----
+## I reviewed the generate code, tested the functions, and checked whether the recommendation logic and scorinf system.
 
 ## Design Pattern (SF10)
 
