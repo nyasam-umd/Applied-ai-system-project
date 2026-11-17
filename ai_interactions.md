@@ -33,7 +33,7 @@ I reviewed the generate code, tested the functions, and checked the recommendati
 
 **Which design pattern did you use?**
 
-<!-- e.g., Strategy, Factory, Observer, etc. -->
+Not attempted. I focused on implementing the multi-step Python agent workflow, recommended validation, and evaluation script. I did not intentionally implement a specific software design pattern.
 
 **How did AI help you brainstorm or implement it?**
 
