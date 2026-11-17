@@ -6,11 +6,11 @@
 
 ## Agentic Workflow (SF8)
 
-I learned that AI assistance can help with debugging and improving code, but a generated suggestions still need to be reviewed and tested before being used.
+I learned that AI assistance to improve my SoulVibes music recommendation system by reviewing existing code, debugging errors, and developing a multi-step Python workflow.
 
 **What task did you give the agent?**
 
-I asked the VS Code AI assistant to help improve my SoulVibes music recommendation system by reviewing the existing recommendation logic, identifying errors, and suggesting code improvements.
+I asked Claude AI to help improve my existing music recommendation system by reviewing the recommendation logic, identifying errors, improving validation, and creating a workflow that checks the system before displaying recommendations.
 
 **Prompts used:**
 
@@ -21,11 +21,22 @@ Check whether the recommendation functions work correctly.
 
 **What did the agent generate or change?**
 
-The AI assistant helped me review the recommendation logic and improve the scoring system. It also provided suggestions for fixing code errors and improving the system's behavior.
+With AI assistance, I developed src/agent.py to coordinate a multi-step Python workflow.
+
+1. Validate the song dataset.
+2. Validate user preferences.
+3. Generate song recommendations.
+4. Validate recommendation results.
+5. Save an execution trace to logs/agent_trace.md.
+
+I also created src/evaluate.py to test three user preference profiles and report pass/fail results.
 
 **What did you verify or fix manually?**
 
-I reviewed the generate code, tested the functions, and checked the recommendation logic and scoring system, and corrected errors when necessary.
+I reviewed the generated code, corrected errors doing implementation, and tested the recommendation workflow by running:
+python –m src.main
+
+I also ran Python –m pytest, which passed all six automated tests, and python –m src.evaluate, which passed all three evaluation tests. I checked that the agent execution trace was created.
 
 ## Design Pattern (SF10)
 
@@ -42,3 +53,12 @@ Not attempted. I focused on implementing the multi-step Python agent workflow, r
 **How does the pattern appear in your final code?**
 
 <!-- Point to the relevant class or method -->
+
+Accepted AI suggestion:
+I accepted the suggestion to create a multi-step workflow in src/agent.py. This improved my system by adding dataset validation, preference validation, recommendation validation, and execution logging.
+
+Revise AI Suggestion:
+I revised the description of the workflow, so it would not be presented as a fully autonomous AI agent. The final implementation uses predefined Python steps and existing validation functions rather than an autonomous large language model.
+
+What I Learned and Limitations:
+I learned that AI can help with debugging, code improvements, and developing new features. However, AI-generated code must be reviewed and tested before being used. One limitation is that the workflow follows predefined steps and does not independently make complex decisions. The evaluation script also checks basic recommendation validity rather than fully measuring recommendation relevance or user satisfaction.
