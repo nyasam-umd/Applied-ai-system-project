@@ -1,0 +1,10 @@
+flowchart TD
+    A["Song Dataset"] --> B["Load Songs"]
+    B --> C["Validate Dataset"]
+    D["User Preferences"] --> E["Validate Preferences"] 
+    C --> F["Recommendation Engine"]
+    E --> F 
+    F --> G["Calculate Song Scores"]
+    G --> H["Rank Top 5 Songs"]
+    H --> I["Validate Recommendations"]
+    I --> J["Display Songs and Explanations"]

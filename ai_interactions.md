@@ -6,23 +6,26 @@
 
 ## Agentic Workflow (SF8)
 
-> Document your experience using an AI agent (e.g., Cursor Agent, Claude, Copilot) to make multi-step changes autonomously.
+I learned that AI assistance can help with debugging and improving code, but a generated suggestions still need to be reviewed and tested before being used.
 
 **What task did you give the agent?**
 
-I asked the VS Code AI assistant to improve code for my SoulVibes music recommendation system.
+I asked the VS Code AI assistant to help improve my SoulVibes music recommendation system by reviewing the existing recommendation logic, identifying errors, and suggesting code improvements.
 
 **Prompts used:**
 
-Explain and fix errors in my code.
+Explain errors and suggest fixes.
+Review my existing music recommendation code and identify problems.
+Help improve the recommendation scoring system.
+Check whether the recommendation functions work correctly.
 
 **What did the agent generate or change?**
 
-It helped improve the recommendation logic and scoring system.
+The AI assistant helped me review the recommendation logic and improve the scoring system. It also provided suggestions for fixing code errors and improving the system's behavior.
 
 **What did you verify or fix manually?**
 
-## I reviewed the generate code, tested the functions, and checked whether the recommendation logic and scorinf system.
+I reviewed the generate code, tested the functions, and checked the recommendation logic and scoring system, and corrected errors when necessary.
 
 ## Design Pattern (SF10)
 

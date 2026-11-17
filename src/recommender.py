@@ -104,3 +104,54 @@ def recommend_songs(user_prefs: Dict, songs: List[Dict], k: int = 5) -> List[Tup
         
     results.sort(key=lambda item: item[1], reverse=True)
     return results[:k]
+def validate_user_preferences(user_prefs: Dict) -> List[str]:
+    errors = []
+    
+    if not user_prefs.get("favorite_genre"):
+        errors.append("Favorite genre is required.")
+    if not user_prefs.get("favorite_mood"):
+        errors.append("Favorite mood is required.")
+    
+    try:
+        energy = float(user_prefs.get("target_energy"))
+        if not 0 <= energy <= 1:
+            errors.append("Target energy must be between 0 and 1.")
+    except (TypeError, ValueError):
+        errors.append("Target energy must be a number.")
+    if not isinstance(user_prefs.get("likes_acoustic"), bool):
+        errors.append("Acostic preference must be True or False.")
+    
+    return errors
+def validate_recommendations(recommendations) -> List [str]:
+    errors = []
+    
+    if not recommendations:
+        return ["No recommendations were generated."]
+    for song, score, explanation in recommendations:
+        if not song.get("title"):
+            errors.append("Recommendation is missing a song title.")
+        if not isinstance(score, (int, float)) or not 0 <= score <= 5:
+            errors.append("Recommendation has an invalid score.")
+        if not explanation.strip():
+            errors.append("Recommendation is missing an explanation.")
+    return errors
+def validate_song_dataset(songs: List[Dict]) -> List[str]:
+    errors = []
+    required = ["title", "artist", "genre", "mood", "energy", "acousticness"]
+    
+    if not songs:
+        return ["Song dataset is empty."]
+    
+    for i, song in enumerate(songs):
+        for field in required:
+            if not song.get(field):
+                errors.append(f"Song {i+1}: missing {field}.")
+        for field in ["energy", "acousticness"]:
+            try:
+                if not 0 <= float(song[field]) <= 1:
+                    errors.append(f"Song {i+1}: invalid {field}.")
+            except (ValueError, TypeError, KeyError):
+                errors.append(f"Song {i+1}: invalid {field}.")
+    return errors
+    
+        

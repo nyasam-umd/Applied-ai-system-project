@@ -1,4 +1,9 @@
-from src.recommender import Song, UserProfile, Recommender
+from src.recommender import(
+    Song, UserProfile, Recommender,
+    validate_user_preferences,
+    validate_song_dataset,
+    validate_recommendations
+)
 
 def make_small_recommender() -> Recommender:
     songs = [
@@ -59,3 +64,17 @@ def test_explain_recommendation_returns_non_empty_string():
     explanation = rec.explain_recommendation(user, song)
     assert isinstance(explanation, str)
     assert explanation.strip() != ""
+def test_valid_preferences():
+    assert validate_user_preferences({
+        "likes_acoustic": False,
+        "favorite_mood": "happy",
+        "target_energy": 0.8,
+        "favorite_genre": "pop",
+    }) == []
+    
+def test_invalid_preferences():
+    assert validate_user_preferences({"target_energy": 2})
+def test_empty_dataset():
+    assert validate_song_dataset([])
+def test_empty_recommendations():
+    assert validate_recommendations([])

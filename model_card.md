@@ -45,13 +45,19 @@ Where does your system seem to work well
 
 Where the system struggles or behaves unfairly.
 
-The system only recommends songs in its dataset. Some genres may be underrepresented. Fixed scoring weights may also favor genre over other preferences. It does not consider listening history or favorite artists.
+The evaluation checks whether recommendations are generated and have valid output fields. It does not fully measure recommendation relevance or user satisfaction. Future improvements could include more diverse test profiles and a relevance scoring metric.
 
 7.  Evaluation
 
 How you checked whether the recommender behaved as expected.
 
-I tested different profiles, including meditation, devotional chanting, and uplifting music. I checked whether recommended songs matched user preferences and whether higher-scoring songs made sense.
+The evaluation script tested 3 user preference profiles.
+
+- Total tests: 3
+- Passed: 3
+- Failed: 0
+
+The tests confirmed that the system generated recommendations and passed its basic output validation checks.
 
 8.  Future Work
 

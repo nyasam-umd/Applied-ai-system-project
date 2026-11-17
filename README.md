@@ -156,3 +156,11 @@ Write 1 to 2 paragraphs here about what you learned:
 I learned that recommendation systems use data and scoring to predict what users might enjoy. They compare user preferences with song features such as genre, mood and energy to generate personalized recommendations.
 
 I also learned that bias can happen when certain genres are overrepresented or some preferences receive more points than others. This can cause the system to recommend certain types of music more often while overlooking other preferences. Recommendation systems should consider fairness and diversity to provide better recommendations for different users.
+Evaluation
+
+SoulVibes includes an evaluation script that tests the recommendation workflow using three user preference profiles.
+
+To run the evaluation:
+python -m src.evaluate
+
+The script reports individual test results and a summary of passed and failed tests.
