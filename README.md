@@ -141,7 +141,8 @@ Because: Matches your overall preferences
 #   3. Rooftop Lights - Score: 2.44
 ```
 
-**Screenshot or video** _(optional)_: <!-- Insert a screenshot or demo video link here -->
+**Screenshot or video** _(optional)_:
+Link to video:
 
 ---
 
@@ -188,3 +189,7 @@ To run the evaluation:
 python -m src.evaluate
 
 The script reports individual test results and a summary of passed and failed tests.
+
+## Demo Video
+
+https://github.com/nyasam-umd/Applied-ai-system-project/blob/main/assets/demo-video/SoulVibes-Demo.webm
